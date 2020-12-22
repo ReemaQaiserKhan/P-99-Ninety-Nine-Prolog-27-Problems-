@@ -6,10 +6,10 @@ L = [a,alfa,b,c,d]
 */
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-insert_at(Word,[H|T],Position,InsertedList):-
+insert_at(Element,[H|T],Position,InsertedList):-
     Position1 is Position-1,
     insert_at1([H|T],Position1,K,Rest),
-    append(K,[Word],K1),
+    append(K,[Element],K1),
     append(K1, Rest,InsertedList).
 
 insert_at1(L,0,[],L):-!.
@@ -30,5 +30,9 @@ InsertedList = [a, b, c, hope, d]
 ?-insert_at(cat,[1,5,2,a,b,c,d],4,InsertedList).
 OUTPUT:
 InsertedList = [1, 5, 2, cat, a, b, c, d]
+
+?-insert_at(c,[1,5,2,a,b,c,d],4,InsertedList).
+OUTPUT:
+InsertedList = [1, 5, 2, c, a, b, c, d]
 
 */
