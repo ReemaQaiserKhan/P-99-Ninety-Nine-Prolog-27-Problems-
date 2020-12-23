@@ -13,7 +13,7 @@ lsort([H|T],Sorted):-
     max(LengthList,Max),
     counter(Max,[H|T],Sorted1),
     reverse(Sorted1,Sorted2),
-    append(Sorted2,Sorted),!. % append/2 is used to decrease the brackets (i.e. [[[o],[b,b],[c,c,c]]] -> [[o],[b,b],[c,c,c]]
+    append(Sorted2,Sorted),!. % append/2 is used to decrease the brackets i.e. [[[o],[b,b],[c,c,c]]] -> [[o],[b,b],[c,c,c]]
 
 lengthList([],[]).
 lengthList([H|T],[Length|W]):-
