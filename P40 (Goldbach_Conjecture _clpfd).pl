@@ -7,6 +7,8 @@ Write a predicate to find the two prime numbers that sum up to a given even inte
 Example:
 ?- goldbach(28, L).
 L = [5,23]
+
+Note: A simple Prolog code is also available on https://github.com/ReemaQaiserKhan/P-99-Ninety-Nine-Prolog-Problems/blob/main/P40%20(Goldbach_Conjecture%20_Prolog).pl
 */
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
