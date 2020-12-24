@@ -18,7 +18,7 @@ prime(Number):-
         S1=0 ->  
         write('Prime'),!).
     
-check_factors(_,_,2,[]).
+check_factors(_,_,1,[]).
 check_factors(Counter,Number,Number2,[Counter|L]):-
       0 is Number mod Number2,
       Number3 is Number2-1,
