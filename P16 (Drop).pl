@@ -10,13 +10,13 @@ drop([H|T],Num,DList):-
     d1([H|T],Num,1,DList),!.
 
 d1([],_,_,[]).
-d1([H|T],Num,Len,[H|List]):-
-    \+(0 is Len mod Num),
-    Len1 is Len + 1,
-    d1(T,Num,Len1,List).
-d1([_H|T],Num,Len,List):-
-    Len1 is Len + 1,
-    d1(T,Num,Len1,List).
+d1([H|T],Num,Counter,[H|List]):-
+    \+(0 is Counter mod Num),
+    Counter1 is Counter + 1,
+    d1(T,Num,Counter1,List).
+d1([_H|T],Num,Counter,List):-
+    Counter1 is Counter + 1,
+    d1(T,Num,Counter1,List).
     
  % drop([a,b,c,d,e,f,g,h,i],5,DroppedList).
  % DroppedList = [a, b, c, d, f, g, h, i]
