@@ -8,7 +8,39 @@ Gs = [[aldo,beat],[carla,david],[evi,flip,gary,hugo,ida]]
 ...
 */
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+group3([H|T],Numbers,Gs):-
+    Numbers=[Num1,Num2,Num3],
+    combination(Num1,[H|T],C1),
+    combination(Num2,[H|T],C2),
+    combination(Num3,[H|T],C3),
+    append(C1,C2,K1),
+    append(K1,C3,K2),
+    all_diff(K2),
+    Gs=[C1,C2,C3].
 
+combination(Num,[H|T],Combination):-
+    subset(S,[H|T]),
+    length(S,Num),
+    Combination=S.
+
+subset(S,L):-
+    append(_L1,L2,L),
+    append(S,_L3,L2).
+    
+all_diff(L) :- \+ (select(X,L,R), memberchk(X,R)).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/* Execute the Program:-
+?-group([aldo,beat,carla,david,evi,flip,gary,hugo,ida],[2,2,5],Gs).
+OUTPUT:
+Gs = [[aldo, beat], [carla, david], [evi, flip, gary, hugo, ida]]
+Gs = [[aldo, beat], [hugo, ida], [carla, david, evi, flip, gary]]
+Gs = [[carla, david], [aldo, beat], [evi, flip, gary, hugo, ida]]
+Gs = [[flip, gary], [hugo, ida], [aldo, beat, carla, david, evi]]
+Gs = [[hugo, ida], [aldo, beat], [carla, david, evi, flip, gary]]
+Gs = [[hugo, ida], [flip, gary], [aldo, beat, carla, david, evi]]
+. . .
+*/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 group([H|T],[S1,S2,S3],Gs):-
     combination(9,[H|T],Combination),
     g(Combination,S1,G1,Rest1),
