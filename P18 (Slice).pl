@@ -9,6 +9,21 @@ X = [c,d,e,f,g]
 */
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+slice([H|T],S1,S2,Sliced):-
+    slice1([H|T],S2,K1),
+      split(K1,S1,_M,Sliced).
+
+slice1(_,0,[]).
+slice1([H|T],S,[H|L]):-
+    S1 is S-1,
+    slice1(T,S1,L).
+
+split(L,1,[],L).
+split([H|T],Counter,[H|L],Rest):-
+    Counter1 is Counter-1,
+    split(T,Counter1,L,Rest).
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 slice([H|T],StartPosition,EndPosition,Sliced):-
     Counter1 is StartPosition-1,
     Counter2 is EndPosition-StartPosition,
