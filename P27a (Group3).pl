@@ -12,6 +12,42 @@ Hint: P26 (Combination).pl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 group3([H|T],G1,G2,G3):-
+    combination(2,[H|T],C1),
+    combination(3,[H|T],C2),
+    combination(4,[H|T],C3),
+    append(C1,C2,K1),
+    append(K1,C3,K2),
+    all_diff(K2),
+    K2=[A1,A2,A3,A4,A5,A6,A7,A8,A9],
+    G1=[A1,A2],
+    G2=[A3,A4,A5],
+    G3=[A6,A7,A8,A9].
+
+combination(Num,[H|T],Combination):-
+    subset(S,[H|T]),
+    length(S,Num),
+    Combination=S.
+
+subset(S,L):-
+    append(_L1,L2,L),
+    append(S,_L3,L2).
+    
+all_diff(L) :- \+ (select(X,L,R), memberchk(X,R)).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/* Execute the Program:-
+?- group3([aldo,beat,carla,david,evi,flip,gary,hugo,ida],G1,G2,G3).
+OUTPUT:
+G1 = [aldo, beat],
+G2 = [carla, david, evi],
+G3 = [flip, gary, hugo, ida]
+G1 = [aldo, beat],
+G2 = [gary, hugo, ida],
+G3 = [carla, david, evi, flip]
+. . .
+*/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+group3([H|T],G1,G2,G3):-
     combination(9,[H|T],Combination),
     g(Combination,2,G1,Rest1),
     g(Rest1,3,G2,Rest2),
