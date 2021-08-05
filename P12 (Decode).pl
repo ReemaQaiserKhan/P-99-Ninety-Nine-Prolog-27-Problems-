@@ -5,6 +5,30 @@ Given a run-length code list generated as specified in problem P11. Construct it
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 decode([H|T],Decoded):-
+    decode1([H|T],DList),
+    flatten(DList,Decoded).
+
+decode1([],[]).
+decode1([H|T],[Decode|List]):-
+    H=[Counter,A],
+    d1(A,Counter,Decode),
+    decode1(T,List).
+
+d1(_,0,[]):-!.
+d1(H,Counter,[H|List]):-
+    Counter1 is Counter-1,
+    d1(H,Counter1,List).
+
+flatten1([],[]):-!.
+flatten1([L|Ls],FlatL):-
+    !,
+    flatten1(L,NewL),
+    flatten1(Ls,NewLs),
+    append(NewL,NewLs,FlatL).
+flatten1(L,[L]).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+decode([H|T],Decoded):-
     decode1([H|T],Decoded1),
     flatten1(Decoded1,Decoded).
 
